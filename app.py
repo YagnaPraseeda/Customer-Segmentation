@@ -218,7 +218,8 @@ def main():
     st.title("Customer Segmentation App")
 
     # Provide the hardcoded file path
-    file_path = "C:/Users/user/Informatics/Project/praseeda project/dataset.csv"
+    #file_path = "C:/Users/user/Informatics/Project/praseeda project/dataset.csv"
+    file_path = 'dataset.csv'
     
     df = preprocess_data(file_path)
 
