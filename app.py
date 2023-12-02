@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-# Function to preprocess the data
 def preprocess_data(file_path):
     df = pd.read_csv(file_path)
     df = df.drop_duplicates()
@@ -36,7 +35,6 @@ def preprocess_data(file_path):
 
     return df
 
-# Function for customer-based clustering
 def perform_customer_clustering(df):
     customer_data = df[['CustomerID', 'Total_Purchase']].dropna()
     scaler = StandardScaler()
@@ -49,14 +47,12 @@ def perform_customer_clustering(df):
         kmeans.fit(customer_data_scaled)
         distortions.append(kmeans.inertia_)
 
-    # Capture elbow plot
     elbow_fig, elbow_ax = plt.subplots(figsize=(10, 6))
     elbow_ax.plot(k_range, distortions, marker='o')
     elbow_ax.set_title('Elbow Method for Optimal k (Customer Clustering)')
     elbow_ax.set_xlabel('Number of Clusters (k)')
     elbow_ax.set_ylabel('Distortion (Within-cluster Sum of Squares)')
 
-    # Show elbow plot in Streamlit
     st.pyplot(elbow_fig)
 
     optimal_k = st.sidebar.slider("Select optimal k", min_value=1, max_value=10, value=3)
@@ -81,7 +77,6 @@ def perform_customer_clustering(df):
     plt.ylabel('Total_Purchase')
     st.pyplot(plt)
 
-# Function for geographical clustering
 def perform_geographical_clustering(df):
     geo_data = df[['Country', 'Total_Purchase']].dropna()
     geo_data['Country'] = geo_data['Country'].astype('category').cat.codes
@@ -95,14 +90,12 @@ def perform_geographical_clustering(df):
         kmeans.fit(geo_data_scaled)
         distortions.append(kmeans.inertia_)
 
-    # Capture elbow plot
     elbow_fig, elbow_ax = plt.subplots(figsize=(10, 6))
     elbow_ax.plot(k_range, distortions, marker='o')
     elbow_ax.set_title('Elbow Method for Optimal k (Geographical Clustering)')
     elbow_ax.set_xlabel('Number of Clusters (k)')
     elbow_ax.set_ylabel('Distortion (Within-cluster Sum of Squares)')
 
-    # Show elbow plot in Streamlit
     st.pyplot(elbow_fig)
 
     optimal_k = st.sidebar.slider("Select optimal k", min_value=1, max_value=10, value=3)
@@ -123,7 +116,6 @@ def perform_geographical_clustering(df):
     plt.ylabel('Total_Purchase')
     st.pyplot(plt)
 
-# Function for product-based clustering
 def perform_product_clustering(df):
     product_data = df[['Quantity', 'UnitPrice']].dropna()
     scaler = StandardScaler()
@@ -136,14 +128,12 @@ def perform_product_clustering(df):
         kmeans.fit(product_data_scaled)
         distortions.append(kmeans.inertia_)
 
-    # Capture elbow plot
     elbow_fig, elbow_ax = plt.subplots(figsize=(10, 6))
     elbow_ax.plot(k_range, distortions, marker='o')
     elbow_ax.set_title('Elbow Method for Optimal k (Product Clustering)')
     elbow_ax.set_xlabel('Number of Clusters (k)')
     elbow_ax.set_ylabel('Distortion (Within-cluster Sum of Squares)')
 
-    # Show elbow plot in Streamlit
     st.pyplot(elbow_fig)
 
     optimal_k = st.sidebar.slider("Select optimal k", min_value=1, max_value=10, value=3)
@@ -168,7 +158,6 @@ def perform_product_clustering(df):
     plt.ylabel('UnitPrice')
     st.pyplot(plt)
 
-# Function for RFM clustering
 def calculate_rfm(data):
     rfm_data = data.groupby('CustomerID').agg({
         'InvoiceDate': lambda x: (pd.to_datetime('now') - pd.to_datetime(x.max())).days,
@@ -192,14 +181,12 @@ def perform_rfm_clustering(data):
         kmeans.fit(rfm_data_scaled)
         distortions.append(kmeans.inertia_)
 
-    # Capture elbow plot
     elbow_fig, elbow_ax = plt.subplots(figsize=(10, 6))
     elbow_ax.plot(k_range, distortions, marker='o')
     elbow_ax.set_title('Elbow Method for Optimal k (RFM Clustering)')
     elbow_ax.set_xlabel('Number of Clusters (k)')
     elbow_ax.set_ylabel('Distortion (Within-cluster Sum of Squares)')
 
-    # Show elbow plot in Streamlit
     st.pyplot(elbow_fig)
 
     optimal_k = st.sidebar.slider("Select optimal k", min_value=1, max_value=10, value=3)
@@ -213,11 +200,9 @@ def perform_rfm_clustering(data):
     plt.ylabel('Monetary')
     st.pyplot(plt)
 
-# Main Streamlit app
 def main():
     st.title("Customer Segmentation App")
 
-    # Provide the hardcoded file path
     #file_path = "C:/Users/user/Informatics/Project/praseeda project/dataset.csv"
     file_path = 'dataset.csv'
     
