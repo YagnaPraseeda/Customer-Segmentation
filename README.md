@@ -43,12 +43,19 @@ The combination of these clustering algorithms enables the web app to uncover pa
 Here is a list of tools used and their purposes:
 
 Pandas: Pandas is used for data manipulation and analysis. It facilitates tasks such as loading, cleaning, and transforming the e-commerce dataset.
+
 NumPy: NumPy is employed for numerical operations and array manipulations, enhancing efficiency in mathematical computations.
+
 Matplotlib and Seaborn: Matplotlib and Seaborn are utilized for data visualization. They help in creating informative plots and graphs to visually represent clustering results, elbow plots, and geographical data.
+
 scikit-learn: scikit-learn is a machine learning library that provides tools for clustering, including the implementation of the K-Means algorithm and the Elbow Method for optimal k determination.
+
 StandardScaler from scikit-learn: StandardScaler is used for standardizing numerical features, ensuring that variables are on the same scale, which is crucial for clustering algorithms like K-Means.
+
 Label Encoding from scikit-learn: Label Encoding is applied to convert categorical variables, such as 'Country,' into numerical format for geographical clustering.
+
 Jupyter Notebooks: Jupyter Notebooks are used for creating an interactive and iterative development environment, allowing for code execution, visualization, and documentation in a single platform.
+
 Elbow Method: The Elbow Method, implemented using code, aids in determining the optimal number of clusters (k) for each clustering task.
 
 These tools collectively provide a comprehensive and efficient framework for data preprocessing, analysis, and presentation, making it possible to derive meaningful insights from the e-commerce customer data and communicate these insights effectively to stakeholders.
